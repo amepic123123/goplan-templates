@@ -1,5 +1,5 @@
 package ${basePackage};
 
-public record testDTO(
+public record TestDTO(
     
 ){}

@@ -5,6 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("your api here")
-public class testController{
+public class TestController {
     
 }
