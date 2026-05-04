@@ -1,6 +1,6 @@
 package ${basePackage};
 
-public class TestModel {
+public class ${modelName} {
     
     private Long id;
     
