@@ -1,4 +1,2 @@
-# Optional application properties for ${projectName}
-# Leave empty or add only templated values. Do not include environment-specific secrets.
+spring.application.name=&{projectName}
 
-# example: server.port=${serverPort}
