@@ -1,2 +1,2 @@
-spring.application.name=&{projectName}
+spring.application.name=${projectName}
 
