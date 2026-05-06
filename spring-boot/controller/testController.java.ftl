@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("your api here")
-public class ${modelName}Controller {
+@RequestMapping("/api/v1/${projectName}")
+public class TestController {
 
-        @Autowired
-        private final ${modelName}Service;
+    @GetMapping("/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("${projectName} controller is running");
+    }
 }
