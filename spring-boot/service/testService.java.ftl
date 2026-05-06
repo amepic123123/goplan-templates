@@ -1,12 +1,10 @@
-package ${basePackage};
+package ${basePackage}.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import ${basePackage}.dto.${modelName}Dto;
 
-@Service
-public class TestService {
-    
-    @Autowired
-    private TestRepository testRepository;
-    
+public interface ${modelName}Service {
+    ${modelName}Dto save(${modelName}Dto dto);
+    ${modelName}Dto findById(Long id);
+    List<${modelName}Dto> findAll();
 }

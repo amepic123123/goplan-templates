@@ -1,8 +1,6 @@
-package ${basePackage};
+package ${basePackage}.repository;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import ${basePackage}.model.${modelName};
 
-@Repository
-public class TestRepository {
-    
-}
+public interface ${modelName}Repository extends JpaRepository<${modelName}, Long> {}

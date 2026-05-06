@@ -1,7 +1,7 @@
 {
   "repository": "spring-boot",
   "description": "Spring Boot FTL template repository snapshot",
-  "timestamp": "2026-05-05",
+  "timestamp": "2026-05-07",
   "files": [
     {
       "path": "Application.java.ftl",
@@ -29,11 +29,11 @@
     },
     {
       "path": "controller/testController.java.ftl",
-      "content": "package ${basePackage};\n\nimport org.springframework.web.bind.annotation.RestController;\nimport org.springframework.web.bind.annotation.RequestMapping;\n\n@RestController\n@RequestMapping(\"your api here\")\npublic class TestController {\n    \n}"
+      "content": "package ${basePackage};\n\nimport org.springframework.web.bind.annotation.RestController;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport ${basePackage}.service.${modelName}Service;\n\n@RestController\n@RequestMapping(\"your api here\")\npublic class ${modelName}Controller {\n\n        @Autowired\n        private final ${modelName}Service;\n}"
     },
     {
       "path": "dto/testDTO.java.ftl",
-      "content": "package ${basePackage};\n\npublic record TestDTO(\n    \n){}"
+      "content": "package ${basePackage}.dto;\n\n<#if imports?? && imports?size gt 0>\n<#list imports as imp>\nimport ${imp};\n</#list>\n</#if>\npublic record ${modelName}Dto (\n\n    private Long id;\n<#if properties??>\n<#list properties as p>\n\n    private ${p.type} ${p.name};\n</#list>\n</#if>\n\n    public Long getId() {\n        return id;\n    }\n\n    public void setId(Long id) {\n        this.id = id;\n    }\n<#if properties??>\n<#list properties as p>\n\n    public ${p.type} get${p.name?cap_first}() {\n        return ${p.name};\n    }\n\n    public void set${p.name?cap_first}(${p.type} ${p.name}) {\n        this.${p.name} = ${p.name};\n    }\n</#list>\n</#if>\n){}"
     },
     {
       "path": "model/testModel.java.ftl",
@@ -49,11 +49,11 @@
     },
     {
       "path": "repository/testRepository.java.ftl",
-      "content": "package ${basePackage};\n\nimport org.springframework.stereotype.Repository;\n\n@Repository\npublic class TestRepository {\n    \n}"
+      "content": "package ${basePackage}.repository;\n\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport ${basePackage}.model.${modelName};\n\npublic interface ${modelName}Repository extends JpaRepository<${modelName}, Long> {}"
     },
     {
       "path": "service/testService.java.ftl",
-      "content": "package ${basePackage};\n\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Service;\n\n@Service\npublic class TestService {\n    \n    @Autowired\n    private TestRepository testRepository;\n    \n}"
+      "content": "package ${basePackage}.service;\n\nimport java.util.List;\nimport ${basePackage}.dto.${modelName}Dto;\n\npublic interface ${modelName}Service {\n    ${modelName}Dto save(${modelName}Dto dto);\n    ${modelName}Dto findById(Long id);\n    List<${modelName}Dto> findAll();\n}"
     },
     {
       "path": "src/main/resources/application.properties.ftl",
@@ -62,6 +62,10 @@
     {
       "path": ".mvn/wrapper/maven-wrapper.properties.ftl",
       "content": "wrapperVersion=3.3.4\ndistributionType=only-script\ndistributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.14/apache-maven-3.9.14-bin.zip"
+    },
+    {
+      "path": "mapper/testMapper.java.ftl",
+      "content": "package ${basePackage}.mapper;\n\nimport org.mapstruct.Mapper;\nimport org.mapstruct.factory.Mappers;\nimport ${basePackage}.dto.${modelName}Dto;\nimport ${basePackage}.model.${modelName};\n\n@Mapper(componentModel = \"spring\")\npublic interface ${modelName}Mapper {\n    ${modelName}Mapper INSTANCE = Mappers.getMapper(${modelName}Mapper.class);\n\n    ${modelName}Dto toDto(${modelName} model);\n    ${modelName} toModel(${modelName}Dto dto);\n}"
     }
   ]
 }
