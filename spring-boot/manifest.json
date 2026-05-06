@@ -49,11 +49,11 @@
     },
     {
       "path": "repository/testRepository.java.ftl",
-      "content": "package ${basePackage}.repository;\n\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport ${basePackage}.model.${modelName};\n\npublic interface ${modelName}Repository extends JpaRepository<${modelName}, Long> {}"
+      "content": "package ${basePackage}.repository;\n\n<#if modelSpecific?? && modelSpecific>\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport ${basePackage}.model.${modelName};\n\npublic interface ${repositoryName}Repository extends JpaRepository<${modelName}, Long> {}\n<#else>\npublic interface ${repositoryName}Repository {}\n</#if>"
     },
     {
       "path": "service/testService.java.ftl",
-      "content": "package ${basePackage}.service;\n\nimport java.util.List;\nimport ${basePackage}.dto.${modelName}Dto;\n\npublic interface ${modelName}Service {\n    ${modelName}Dto save(${modelName}Dto dto);\n    ${modelName}Dto findById(Long id);\n    List<${modelName}Dto> findAll();\n}"
+      "content": "package ${basePackage}.service;\n\n<#if modelSpecific?? && modelSpecific>\nimport java.util.List;\nimport java.util.Optional;\nimport org.springframework.stereotype.Service;\nimport ${basePackage}.dto.${modelName}Dto;\nimport ${basePackage}.mapper.${modelName}Mapper;\nimport ${basePackage}.model.${modelName};\nimport ${basePackage}.repository.${modelName}Repository;\n\n@Service\npublic class ${serviceName}Service {\n\n    private final ${modelName}Repository repository;\n    private final ${modelName}Mapper mapper;\n\n    public ${serviceName}Service(${modelName}Repository repository, ${modelName}Mapper mapper) {\n        this.repository = repository;\n        this.mapper = mapper;\n    }\n\n    public ${modelName}Dto save(${modelName}Dto dto) {\n        ${modelName} model = mapper.toModel(dto);\n        ${modelName} saved = repository.save(model);\n        return mapper.toDto(saved);\n    }\n\n    public ${modelName}Dto findById(Long id) {\n        Optional<${modelName}> model = repository.findById(id);\n        return model.map(mapper::toDto).orElse(null);\n    }\n\n    public List<${modelName}Dto> findAll() {\n        return repository.findAll().stream()\n            .map(mapper::toDto)\n            .toList();\n    }\n}\n<#else>\nimport org.springframework.stereotype.Service;\n\n@Service\npublic class ${serviceName}Service {\n}\n</#if>"
     },
     {
       "path": "src/main/resources/application.properties.ftl",
