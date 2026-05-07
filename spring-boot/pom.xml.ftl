@@ -85,6 +85,13 @@
     		<artifactId>spring-boot-starter-freemarker</artifactId>
 		</dependency>
 
+        <!-- H2 Database (Embedded) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
