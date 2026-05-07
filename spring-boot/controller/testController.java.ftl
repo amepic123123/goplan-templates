@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/${projectName}")
-public class ${modelName} {
+public class ${modelName}Controller {
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {

@@ -29,7 +29,7 @@
     },
     {
       "path": "controller/testController.java.ftl",
-      "content": "package ${basePackage}.controller;\n\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\n@RequestMapping(\"/api/v1/${projectName}\")\npublic class ${modelName} {\n\n    @GetMapping(\"/health\")\n    public ResponseEntity<String> health() {\n        return ResponseEntity.ok(\"${projectName} controller is running\");\n    }\n}"
+      "content": "package ${basePackage}.controller;\n\nimport org.springframework.http.ResponseEntity;\nimport org.springframework.web.bind.annotation.GetMapping;\nimport org.springframework.web.bind.annotation.RequestMapping;\nimport org.springframework.web.bind.annotation.RestController;\n\n@RestController\n@RequestMapping(\"/api/v1/${projectName}\")\npublic class ${modelName}Controller {\n\n    @GetMapping(\"/health\")\n    public ResponseEntity<String> health() {\n        return ResponseEntity.ok(\"${projectName} controller is running\");\n    }\n}"
     },
     {
       "path": "dto/testDTO.java.ftl",
