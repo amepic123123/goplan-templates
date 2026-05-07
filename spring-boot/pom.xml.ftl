@@ -32,7 +32,7 @@
          <dependency>
         <groupId>org.mapstruct</groupId>
         <artifactId>mapstruct</artifactId>
-        <version>${org.mapstruct.version}</version>
+        <version>1.5.5.Final</version>
     </dependency>
         <!-- Web (REST APIs) -->
         <dependency>
@@ -113,7 +113,7 @@
                     <path>
                         <groupId>org.mapstruct</groupId>
                         <artifactId>mapstruct-processor</artifactId>
-                        <version>${org.mapstruct.version}</version>
+                        <version>1.5.5.Final</version>
                     </path>
                 </annotationProcessorPaths>
             </configuration>
