@@ -20,6 +20,7 @@
 
     <properties>
         <java.version>17</java.version>
+        <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
@@ -28,7 +29,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
+         <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${org.mapstruct.version}</version>
+    </dependency>
         <!-- Web (REST APIs) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -69,6 +74,11 @@
             <version>1.18.32</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
@@ -85,6 +95,22 @@
 
     <build>
         <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.mapstruct</groupId>
+                        <artifactId>mapstruct-processor</artifactId>
+                        <version>${org.mapstruct.version}</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
