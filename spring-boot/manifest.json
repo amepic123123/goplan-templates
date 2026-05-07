@@ -65,7 +65,7 @@
     },
     {
       "path": "mapper/testMapper.java.ftl",
-      "content": "package ${basePackage}.mapper;\n\nimport org.mapstruct.Mapper;\nimport org.mapstruct.factory.Mappers;\nimport ${basePackage}.dto.${modelName}Dto;\nimport ${basePackage}.model.${modelName};\n\n@Mapper(componentModel = \"spring\")\npublic interface ${modelName}Mapper {\n    ${modelName}Mapper INSTANCE = Mappers.getMapper(${modelName}Mapper.class);\n\n    ${modelName}Dto toDto(${modelName} model);\n    ${modelName} toModel(${modelName}Dto dto);\n}"
+      "content": "package ${basePackage}.mapper;\n\nimport org.mapstruct.Mapper;\nimport ${basePackage}.dto.${modelName}Dto;\nimport ${basePackage}.model.${modelName};\n\n@Mapper(componentModel = \"spring\")\npublic interface ${modelName}Mapper {\n    ${modelName}Dto toDto(${modelName} model);\n    ${modelName} toModel(${modelName}Dto dto);\n}"
     }
   ]
 }
