@@ -1,13 +1,23 @@
 package ${basePackage}.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 <#if imports?? && imports?size gt 0>
 <#list imports as imp>
 import ${imp};
 </#list>
 
 </#if>
+@Entity
+@Table(name = "${modelName?lower_case}s")
 public class ${modelName} {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 <#if properties??>
 <#list properties as p>
